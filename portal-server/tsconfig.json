@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": [
+                "./src/*"
+            ],
+            "@config/*": [
+                "./config/*"
+            ]
+        },
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
+    },
+}
