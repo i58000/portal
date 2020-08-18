@@ -31,7 +31,7 @@ setInterval(_sendMsgRdyToSend, 1000);
 
 const _subscribers: any = {};
 export const connect = (): WebSocket => {
-  ws = new WebSocket("ws://localhost:3002/");
+  ws = new WebSocket(process.env.VUE_APP_WS_URL);
   ws.onopen = () => {
     console.log("open", ws);
     ws.onmessage = event => {
