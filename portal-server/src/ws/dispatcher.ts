@@ -41,7 +41,6 @@ export const addSubscriber = (
   const forAccountId = accountId => {
     const ctx = getContext(accountId);
     if (!ctx) return
-    console.log('ctx', ctx)
     if (Array.isArray(groupIdOrIds)) {
       groupIdOrIds.forEach(groupId => {
         forGroupId(ctx, groupId);

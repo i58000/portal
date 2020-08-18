@@ -3,7 +3,7 @@ import { verifyClient, getContext } from './context'
 
 import onMessage from './onMessage'
 import onConnection from './onConnection'
-import onclose from './onclose'
+import onclose from './onClose'
 
 const server = new WebSocket.Server({ port: 3002, verifyClient });
 

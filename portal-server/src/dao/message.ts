@@ -32,15 +32,11 @@ export const find = async ({ id, beforeTimestamp, groupId, read, count }: QueryM
     if (count !== undefined) query.take(count);
 
 
-    console.log(accountId, beforeTimestamp / 1000)
-    console.log(query.getSql())
-
     return await query.getMany();
 };
 
 export const insert = async ({ groupId, content, timestamp }: SendMessagePayload, account: Account) => {
 
-    console.log('----', content)
     const timeServer = new Date();
     const repo = getRepository(ChatMessage);
     const temp = new ChatMessage({
