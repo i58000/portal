@@ -21,7 +21,8 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 .header {
-  border-bottom: 1px solid #e8e8e8;
+  // border-bottom: 1px solid #e8e8e8;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
   .right {

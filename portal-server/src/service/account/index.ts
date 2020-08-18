@@ -9,7 +9,7 @@ export const queryAccount = async ({ keyword, pager }: { keyword?: any, pager: P
     return results
 }
 
-export const newAccount = async ({ username, password, confirm, email }) => {
+export const createAccount = async ({ username, password, confirm, email }) => {
     if (password !== confirm) {
         return createErrorResponse(3003)
     }
@@ -29,7 +29,6 @@ export const checkAccount = async (username: string, password: string) => {
         return createErrorResponse(3002)
     }
     const results = await find({ username, password });
-    console.log(results)
     // if (results.length === 0) {
     //     return createErrorResponse(3006)
     // } else 

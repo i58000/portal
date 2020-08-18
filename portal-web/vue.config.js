@@ -27,7 +27,6 @@ module.exports = {
     });
     config.devServer = {
       proxy: {
-        // detail: https://cli.vuejs.org/config/#devserver-proxy
         "/api": {
           target: `http://localhost:3001/api`,
           changeOrigin: true,

@@ -1,9 +1,8 @@
-import { unsubscribe } from "./dispatcher";
+import { signOut } from "./dispatcher";
 
-export default function (ctx) {
-    console.log("onclose", ctx)
-    console.log("unsubscribe", ctx.subscribers)
-    ctx.subscribers.forEach(sid => {
-        unsubscribe(sid)
-    });
+export default function(ctx) {
+  console.log("onclose", ctx);
+
+  console.log("unsubscribe", ctx.subscribers);
+  signOut(ctx);
 }

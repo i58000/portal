@@ -10,7 +10,9 @@ export type MessageType =
   | "QueryMessage"
   | "SendMessage"
   | "ReadMessage"
+  | "Request"
   // server
+  | "Response"
   | "NewMessage"
   | "System";
 
@@ -49,23 +51,34 @@ export interface SystemPayload {
   data?: any;
 }
 
+export interface RequestPayload {
+  requestId: number;
+  resourceId: string;
+  data?: any;
+}
+
+export interface ResponsePayload {
+  requestId: number;
+  resourceId: string;
+  status: 200 | 400 | 403 | 401 | 404 | 500;
+  data?: any;
+}
+
+type Payload =
+  | QueryMessagePayload
+  | SendMessagePayload
+  | ReadMessagePayload
+  | SystemPayload
+  | RequestPayload;
+
 export interface Message {
   type: MessageType;
   origin: MessageOrigin;
   timestamp: number;
-  payload:
-  | QueryMessagePayload
-  | SendMessagePayload
-  | ReadMessagePayload
+  payload: Payload;
 }
 
-export const createMessage = (
-  type: MessageType,
-  payload:
-    | QueryMessagePayload
-    | SendMessagePayload
-    | ReadMessagePayload
-): Message => {
+export const createMessage = (type: MessageType, payload: Payload): Message => {
   const msg: Message = {
     type,
     origin: "client",

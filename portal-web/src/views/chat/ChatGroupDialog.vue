@@ -143,11 +143,7 @@ export default Vue.extend({
           this.skipWatchHistroyLength = false;
           return;
         }
-        if (this.disableAutoScroll) {
-          this.hasNewMessage = true;
-          return;
-        }
-        this.scrollTo();
+        if (!this.disableAutoScroll) this.scrollTo();
       }
     }
   },

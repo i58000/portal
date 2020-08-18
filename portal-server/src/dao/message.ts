@@ -22,17 +22,17 @@ export const find = async ({ id, beforeTimestamp, groupId, read, count }: QueryM
                 .select('gg.id')
                 .getQuery()
             return 'm.group_id in ' + `( ${subQuery} )`
-        }, { accountId })
+        }, { accountId }).orderBy('m.timestamp', 'DESC')
 
     if (id !== undefined) query.andWhere("m.id = :id", { id })
     if (groupId !== undefined) query.andWhere("m.group_id = :groupId", { groupId })
     if (read !== undefined) query.andWhere("m.read = :read", { read })
 
-    if (beforeTimestamp !== undefined) query.andWhere('m.timestamp < :beforeTimestamp', { beforeTimestamp })
+    if (beforeTimestamp !== undefined) query.andWhere('unix_timestamp(m.timestamp) < :beforeTimestamp', { beforeTimestamp: beforeTimestamp / 1000 })
     if (count !== undefined) query.take(count);
 
 
-    console.log(accountId)
+    console.log(accountId, beforeTimestamp / 1000)
     console.log(query.getSql())
 
     return await query.getMany();

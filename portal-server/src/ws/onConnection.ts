@@ -1,17 +1,15 @@
 import { queryGroup } from "@src/service/chat/group";
-import { subscribe } from "./dispatcher";
-import { MessageType, NewMessagePayload } from "./message";
+import { signIn } from "./dispatcher";
 
 export default async function (ctx) {
-    console.log("onConnection", ctx)
-    const accountId = ctx.account.id;
-    const groups = await queryGroup(accountId)
-    // console.log(groups)
-    // 找到所有groupId
-    groups.forEach(g => {
-        const sid = subscribe(g.id, (msg) => {
-            ctx.send("NewMessage" as MessageType, msg as NewMessagePayload)
-        })
-        ctx.subscribers.push(sid);
-    });
+  console.log("onConnection", ctx);
+  const accountId = ctx.account.id;
+
+  // 订阅group消息
+  const groups = await queryGroup(accountId);
+  // 找到所有groupId
+  const groupIds = groups.map(x => x.id);
+  console.log("onConnection queryGroup", groupIds)
+
+  signIn(ctx, groupIds);
 }

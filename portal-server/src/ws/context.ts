@@ -1,41 +1,61 @@
-import * as JWT from 'jsonwebtoken'
+import * as JWT from "jsonwebtoken";
 
-import { TOKEN_SECRET, TOKEN_COOKIE_KEY } from '@config/index'
-import { createMessage, NewMessagePayload, SystemPayload, MessageType } from './message'
+import { TOKEN_SECRET, TOKEN_COOKIE_KEY } from "@config/index";
+import {
+  createMessage,
+  NewMessagePayload,
+  SystemPayload,
+  MessageType
+} from "./message";
+import Account from "@src/entity/Account";
 
-// interface Context {
-//     send:
-// }
+export interface Context {
+  send: Function;
+  account: Account;
+  subscribers: Array<number>;
+}
 
-export function getContext(client) {
-    client._socket.ctx.send = (type: MessageType, payload: NewMessagePayload | SystemPayload) => {
-        const msg = createMessage(type, payload);
-        client.send(JSON.stringify(msg))
-    }
-    client._socket.ctx.subscribers = []
-    return client._socket.ctx
+export function getContext(client): Context {
+  const ctx = client._socket.ctx;
+  ctx.send = (
+    type: MessageType,
+    payload: NewMessagePayload | SystemPayload
+  ) => {
+    const msg = createMessage(type, payload);
+    client.send(JSON.stringify(msg));
+  };
+  ctx.subscribers = [];
+  return ctx;
 }
 
 export function verifyClient(info) {
-    // console.log('info', info)
+  // console.log("info", info);
+  const token = getCookie(TOKEN_COOKIE_KEY, info.req.headers.cookie);
+  if (!token) return false;
+  const account = JWT.verify(token, TOKEN_SECRET);
+  if (!account) return false;
 
-    const token = getCookie(TOKEN_COOKIE_KEY, info.req.headers.cookie)
-    const account = JWT.verify(token, TOKEN_SECRET);
+  info.req.socket.ctx = {
+    account
+  };
+  return true;
 
-    if (!account) return false;
-
-    info.req.socket.ctx = {
-        account
-    }
-    return true
+  // info.req.socket.ctx = {
+  //   account: {
+  //     username: "uuu",
+  //     nickname: "nnn",
+  //     id: 123
+  //   }
+  // };
+  // return true;
 }
 
 function getCookie(cname, cookie) {
-    var name = cname + "=";
-    var ca = cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
-        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-    }
-    return "";
+  var name = cname + "=";
+  var ca = cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i].trim();
+    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+  }
+  return "";
 }

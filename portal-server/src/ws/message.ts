@@ -2,8 +2,8 @@
 //   id: number;
 //   title?: string;
 // }
-import ChatGroup from '@src/entity/ChatGroup'
-import Account from '@src/entity/Account'
+import ChatGroup from "@src/entity/ChatGroup";
+import Account from "@src/entity/Account";
 type Group = ChatGroup;
 
 export type MessageType =
@@ -11,14 +11,16 @@ export type MessageType =
   | "QueryMessage"
   | "SendMessage"
   | "ReadMessage"
+  | "Request"
   // server
+  | "Response"
   | "NewMessage"
   | "System";
 
 type MessageOrigin = "client" | "server";
 
 export interface QueryMessagePayload {
-  id?: number,
+  id?: number;
   groupId?: Group["id"];
   read?: boolean;
   beforeTimestamp?: number;
@@ -51,24 +53,36 @@ export interface SystemPayload {
   data?: any;
 }
 
+export interface RequestPayload {
+  requestId: number;
+  resourceId: string;
+  data?: any;
+}
+
+export interface ResponsePayload {
+  requestId: number;
+  resourceId: string;
+  status: 200 | 400 | 403 | 401 | 404 | 500;
+  data?: any;
+}
+
+type Payload =
+  | QueryMessagePayload
+  | SendMessagePayload
+  | ReadMessagePayload
+  | SystemPayload
+  | NewMessagePayload
+  | RequestPayload
+  | ResponsePayload;
+
 export interface Message {
   type: MessageType;
   origin: MessageOrigin;
   timestamp: number;
-  payload:
-  | QueryMessagePayload
-  | SendMessagePayload
-  | ReadMessagePayload
-  | NewMessagePayload
-  | SystemPayload;
+  payload: Payload;
 }
 
-export const createMessage = (
-  type: MessageType,
-  payload:
-    | NewMessagePayload
-    | SystemPayload
-): Message => {
+export const createMessage = (type: MessageType, payload: Payload): Message => {
   const msg: Message = {
     type,
     origin: "server",

@@ -15,6 +15,7 @@
         <div v-else class="empty">请从左侧选择或创建一个聊天</div>
       </div>
     </div>
+    <div v-else>请先点击右上角 注册 / 登录</div>
     <a-modal v-model="visibleAccountSearcher" centered :footer="null" :closable="false">
       <AccountSearcher :accounts="accounts" @createGroup="createGroup" @search="searchAccount" />
     </a-modal>
@@ -27,15 +28,9 @@ import ChatGroupList from "./ChatGroupList.vue";
 import ChatGroupDialog from "./ChatGroupDialog.vue";
 import ChatHeader from "./ChatHeader.vue";
 import AccountSearcher from "./AccountSearcher.vue";
-import {
-  connect,
-  disconnect,
-  onmessage,
-  sendMessage,
-  readMessage,
-  queryMessage
-} from "@/api/ws";
-import { queryGroup, createGroup } from "@/api/chat";
+import { connect, disconnect, on } from "@/api/ws";
+import { sendMessage, readMessage, queryMessage } from "@/api/ws/message";
+import { queryGroup, createGroup } from "@/api/ws/group";
 import { queryAccount } from "@/api/account";
 import { NewMessagePayload } from "@/models/message";
 import { Modal } from "ant-design-vue";
@@ -105,19 +100,18 @@ export default Vue.extend({
   },
   methods: {
     async init() {
-      this.groups = await queryGroup();
-      // set unread
-      this.groups.forEach(g => {
-        this.$set(g, "_unread", g.groupAccountRels[0].unread);
-      });
-
-      onmessage("NewMessage", this.onNewMessage);
-      onmessage("System", this.onSystem);
+      on("NewMessage", this.onNewMessage);
+      on("System", this.onSystem);
       connect();
       // 查询未读
       // queryMessage({
       //   read: false
       // });
+      this.groups = await queryGroup();
+      // set unread
+      this.groups.forEach(g => {
+        this.$set(g, "_unread", g.groupAccountRels[0].unread);
+      });
     },
     loadMore({ groupId, beforeTimestamp }: any) {
       queryMessage({
@@ -177,6 +171,17 @@ export default Vue.extend({
         });
       }
 
+      const lastTimestamp = targetGroup.history[
+        targetGroup.history.length - 1
+      ]?.at.getTime();
+      if (
+        targetGroup._disableAutoScroll &&
+        lastTimestamp &&
+        lastTimestamp < new Date(timestamp).getTime()
+      ) {
+        this.$set(targetGroup, "_hasNewMessage", true);
+      }
+
       targetGroup.history.push({
         id,
         by,
@@ -184,9 +189,7 @@ export default Vue.extend({
         at: new Date(timestamp),
         content
       });
-      if (targetGroup._disableAutoScroll) {
-        this.$set(targetGroup, "_hasNewMessage", true);
-      }
+
       if (targetGroup.id !== this.activeGroupId) {
         const count = targetGroup._unread || 0;
         this.$set(targetGroup, "_unread", count + 1);

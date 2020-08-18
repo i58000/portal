@@ -5,9 +5,10 @@
 
         </a-layout-header>
         <a-layout :style="{ marginTop: '64px' }">
-            <a-layout-content :style="{ height: '100%' }">
+            <a-layout-content class="scroller"
+                :style="{ height: '100%' }">
                 <a-layout :style="{ minHeight: 'calc(100% - 48px)' }">
-                    <a-layout-content>
+                    <a-layout-content class="layout-content">
                         <router-view></router-view>
                     </a-layout-content>
 
@@ -58,5 +59,8 @@ export default Vue.extend({
 
 .layout {
   height: 100%;
+  .layout-content {
+    background: #f9f9f9;
+  }
 }
 </style>

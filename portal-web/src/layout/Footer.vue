@@ -5,6 +5,6 @@
 .footer {
   text-align: right;
   line-height: 48px;
-  margin-right: 30px;
+  padding-right: 30px;
 }
 </style>

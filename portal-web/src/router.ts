@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-
 Vue.use(Router);
 
 export default new Router({
@@ -10,21 +9,46 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home,
-      meta: {
-        label: "首页"
-      }
+      component: Home
+      // redirect: { name: "blog" }
     },
     {
-      path: "/note",
-      name: "note",
+      path: "/blog",
+      name: "blog",
       component: () =>
-        import(/* webpackChunkName: "note" */ "./views/About.vue"),
+        import(/* webpackChunkName: "blog" */ "./views/blog/index.vue"),
       meta: {
-        label: "笔记"
-      }
+        label: "博客"
+      },
+      children: [
+        {
+          path: "",
+          component: () =>
+            import(/* webpackChunkName: "blog" */ "./views/blog/BlogList.vue"),
+          meta: {
+            visibleCarousel: true
+          }
+        },
+        {
+          path: "article/:id",
+          props: true,
+          component: () =>
+            import(
+              /* webpackChunkName: "blog" */ "./views/blog/BlogArticle.vue"
+            ),
+          meta: {}
+        }
+      ]
     },
+    // {
+    //   path: "/note",
+    //   name: "note",
+    //   component: () =>
+    //     import(/* webpackChunkName: "note" */ "./views/About.vue"),
+    //   meta: {
+    //     label: "笔记"
+    //   }
+    // },
     {
       path: "/chat",
       name: "chat",
@@ -40,23 +64,25 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "lab" */ "./views/About.vue"),
       meta: {
-        label: "实验室"
+        label: "Lab"
       },
       children: [
         {
           path: "vue-treecharts",
-          component: () =>
-            import(/* webpackChunkName: "lab" */ "./views/About.vue"),
+          // component: () =>
+          //   import(/* webpackChunkName: "lab" */ "./views/About.vue"),
           meta: {
-            label: "vue-treecharts"
+            label: "vue-treecharts",
+            href: "https://www.npmjs.com/package/vue-v-contextmenu"
           }
         },
         {
           path: "vue-v-contextmenu",
-          component: () =>
-            import(/* webpackChunkName: "lab" */ "./views/About.vue"),
+          // component: () =>
+          //   import(/* webpackChunkName: "lab" */ "./views/About.vue"),
           meta: {
-            label: "vue-v-contextmenu"
+            label: "vue-v-contextmenu",
+            href: "https://www.npmjs.com/package/vue-v-contextmenu"
           }
         }
       ]

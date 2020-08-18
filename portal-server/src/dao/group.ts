@@ -16,9 +16,6 @@ export const find = async ({ accountId }): Promise<ChatGroup[]> => {
             return 'g.id in ' + `( ${subQuery} )`
         }, { accountId })
 
-    console.log(accountId)
-    console.log(query.getSql())
-
     return await query.getMany();
 };
 
