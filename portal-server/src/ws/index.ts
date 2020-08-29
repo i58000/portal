@@ -3,7 +3,7 @@ import { verifyClient, getContext } from './context'
 
 import onMessage from './onMessage'
 import onConnection from './onConnection'
-import onclose from './onclose'
+import onClose from './onClose'
 
 const server = new WebSocket.Server({ port: 3002, verifyClient });
 
@@ -18,7 +18,7 @@ server.on('connection', (client: WebSocket.Client) => {
 
 
     client.on('close', event => {
-        onclose(ctx)
+        onClose(ctx)
     })
 
     // client.send('init msg');
