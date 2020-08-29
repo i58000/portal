@@ -71,7 +71,7 @@ export default new Router({
           path: "opensource-components",
           meta: {
             label: "开源组件",
-            href: "/opensource-components"
+            href: "/opensource-components.html"
           }
         }
       ]
