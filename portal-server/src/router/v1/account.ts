@@ -14,6 +14,7 @@ import {
 const router = new KoaRouter();
 
 router.get("/", async (ctx, next) => {
+  console.log(ctx.request.query);
   const { keyword, pager } = ctx.request.query;
   const accounts = await queryAccount({ keyword, pager: JSON.parse(pager) });
   ctx.body = {

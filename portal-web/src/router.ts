@@ -10,11 +10,9 @@ export default new Router({
     {
       path: "/",
       component: Home
-      // redirect: { name: "blog" }
     },
     {
       path: "/blog",
-      name: "blog",
       component: () =>
         import(/* webpackChunkName: "blog" */ "./views/blog/index.vue"),
       meta: {
@@ -22,6 +20,7 @@ export default new Router({
       },
       children: [
         {
+          name: "blogList",
           path: "",
           component: () =>
             import(/* webpackChunkName: "blog" */ "./views/blog/BlogList.vue"),
@@ -30,6 +29,7 @@ export default new Router({
           }
         },
         {
+          name: "blogArticle",
           path: "article/:id",
           props: true,
           component: () =>
@@ -61,28 +61,17 @@ export default new Router({
     {
       path: "/lab",
       name: "lab",
-      component: () =>
-        import(/* webpackChunkName: "lab" */ "./views/About.vue"),
+      // component: () =>
+      //   import(/* webpackChunkName: "lab" */ "./views/lab/index.vue"),
       meta: {
         label: "Lab"
       },
       children: [
         {
-          path: "vue-treecharts",
-          // component: () =>
-          //   import(/* webpackChunkName: "lab" */ "./views/About.vue"),
+          path: "opensource-components",
           meta: {
-            label: "vue-treecharts",
-            href: "https://www.npmjs.com/package/vue-v-contextmenu"
-          }
-        },
-        {
-          path: "vue-v-contextmenu",
-          // component: () =>
-          //   import(/* webpackChunkName: "lab" */ "./views/About.vue"),
-          meta: {
-            label: "vue-v-contextmenu",
-            href: "https://www.npmjs.com/package/vue-v-contextmenu"
+            label: "开源组件",
+            href: "/opensource-components"
           }
         }
       ]

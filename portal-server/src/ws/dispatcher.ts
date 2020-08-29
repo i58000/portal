@@ -40,7 +40,6 @@ export const addSubscriber = (
 
   const forAccountId = accountId => {
     const ctx = getContext(accountId);
-    if (!ctx) return
     if (Array.isArray(groupIdOrIds)) {
       groupIdOrIds.forEach(groupId => {
         forGroupId(ctx, groupId);

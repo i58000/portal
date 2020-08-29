@@ -9,7 +9,12 @@
           <a-icon slot="indicator" type="loading" style="font-size: 24px" spin />
         </a-spin>
         <transition name="pop">
-          <span v-if="!loading">{{title}}</span>
+          <span v-if="!loading">
+            <span v-if="isEditing">
+              <a-input v-model="titleEditing" class="title-input"></a-input>
+            </span>
+            <span v-else>{{title}}</span>
+          </span>
         </transition>
       </div>
 
@@ -56,6 +61,10 @@
         <article v-else class="content github-markdown" v-html="marked"></article>
         <!-- </transition> -->
       </a-skeleton>
+      <div class="meta footer">
+        updated at
+        <span class="primary-color">{{updatedAt}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -66,8 +75,11 @@
 import Vue from "vue";
 import Breadcrumb from "./Breadcrumb.vue";
 import marked from "marked";
-import { Skeleton, Spin, Icon, Button, message } from "ant-design-vue";
+import { Skeleton, Spin, Icon, Button, message, Input } from "ant-design-vue";
 import CollapseTransition from "@/components/collapse-transition";
+import { getArticle, updateArticle } from "@/api/article";
+import { state } from "./store";
+import parseDate from "@/util/parseDate";
 export default Vue.extend({
   components: {
     "a-skeleton": Skeleton,
@@ -75,11 +87,14 @@ export default Vue.extend({
     "a-icon": Icon,
     "a-button": Button,
     "a-button-group": Button.Group,
+    "a-input": Input,
     Breadcrumb,
     CollapseTransition
   },
   props: {
-    id: {}
+    id: {
+      type: String
+    }
   },
   data() {
     return {
@@ -87,16 +102,17 @@ export default Vue.extend({
       isEditing: false,
       isPreview: false,
       isSaving: false,
-      contentEditing: ""
+      contentEditing: "",
+      titleEditing: ""
     };
   },
   computed: {
     isAuthor(): boolean {
-      // return this.$store.account.id === this.article.account.id;
-      return true;
+      return this.$store.account.id === this.article.account?.id;
+      // return state.isAdmin;
     },
     loading() {
-      return !this.marked;
+      return this.marked === undefined || this.marked === null;
     },
     title(): string {
       return this.article.title;
@@ -105,24 +121,16 @@ export default Vue.extend({
       return this.article.content;
     },
     createdAt(): string {
-      return (
-        this.article.created_at?.toLocaleDateString() +
-        " " +
-        this.article.created_at?.toTimeString().substr(0, 5)
-      );
+      return parseDate(this.article.created_at);
     },
     updatedAt(): string {
-      return (
-        this.article.updated_at?.toLocaleDateString() +
-        " " +
-        this.article.updated_at?.toTimeString().substr(0, 5)
-      );
+      return parseDate(this.article.updated_at);
     },
     author(): string {
       return this.article.account?.nickname;
     },
     marked(): string {
-      return this.content && marked(this.content);
+      return this.content ? marked(this.content) : "";
     },
     markedPreview(): string {
       return this.contentEditing && marked(this.contentEditing);
@@ -133,27 +141,37 @@ export default Vue.extend({
       immediate: true,
       async handler(val) {
         this.article = {};
-        this.article = await getBlogArticle(val);
+        this.article = await getArticle(val);
       }
     }
   },
   methods: {
     cancel() {
       this.contentEditing = "";
+      this.titleEditing = "";
       this.isEditing = false;
     },
     async save() {
       this.isSaving = true;
-      // await save();
-      setTimeout(() => {
+      try {
+        const res = await updateArticle(Number(this.id), {
+          content: this.contentEditing,
+          title: this.titleEditing
+        });
         this.article.content = this.contentEditing;
+        this.article.title = this.titleEditing;
         this.cancel();
         message.success("save ok");
+      } catch (err) {
+        console.error(err);
+        message.error("save error");
+      } finally {
         this.isSaving = false;
-      }, 2000);
+      }
     },
     edit() {
       this.contentEditing = this.content;
+      this.titleEditing = this.title;
       this.isEditing = true;
     },
     togglePreview() {
@@ -161,64 +179,6 @@ export default Vue.extend({
     }
   }
 });
-
-const getBlogArticle = async (id: number) => {
-  const article = {
-    id: 123,
-    title: "这是标题这是标题这是标题",
-    content: `Marked - Markdown Parser
-========================
-
-[Marked] lets you convert [Markdown] into HTML.  Markdown is a simple text format whose goal is to be very easy to read and write, even when not converted to HTML.  This demo page will let you type anything you like and see how it gets converted.  Live.  No more waiting around.
-
-How To Use The Demo
--------------------
-
-1. Type in stuff on the left.
-2. See the live updates on the right.
-
-That's it.  Pretty simple.  There's also a drop-down option in the upper right to switch between various views:
-
-- **Preview:**  A live display of the generated HTML as it would render in a browser.
-- **HTML Source:**  The generated HTML before your browser makes it pretty.
-- **Lexer Data:**  What [marked] uses internally, in case you like gory stuff like this.
-- **Quick Reference:**  A brief run-down of how to format things using markdown.
-
-Why Markdown?
--------------
-
-It's easy.  It's not overly bloated, unlike HTML.  Also, as the creator of [markdown] says,
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-Ready to start writing?  Either start changing stuff on the left or
-[clear everything](/demo/?text=) with a simple click.
-
-[Marked]: https://github.com/markedjs/marked/
-[Markdown]: http://daringfireball.net/projects/markdown/
-`,
-    created_at: new Date(),
-    created_by: 111,
-    updated_at: new Date(),
-    updated_by: 111,
-    account: {
-      id: 111,
-      nickname: "admin"
-    }
-  };
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(article);
-      // reject();
-    }, 2000);
-  });
-};
 </script>
 
 <style lang="scss" scoped>
@@ -228,6 +188,13 @@ Ready to start writing?  Either start changing stuff on the left or
   .container {
     padding: 20px;
     // height: 100%;
+    .title-input {
+      color: $primary-color;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+      height: 60px;
+    }
 
     .title {
       height: 80px;
@@ -252,6 +219,14 @@ Ready to start writing?  Either start changing stuff on the left or
       width: 100%;
       height: 100%;
       textarea {
+        padding: 30px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        outline: 0;
+        border: 1px solid $border-color-base;
+        border-radius: $border-radius-base;
+        font-size: 16px;
         /* 滚动槽 */
         &::-webkit-scrollbar {
           width: 6px;
@@ -268,13 +243,12 @@ Ready to start writing?  Either start changing stuff on the left or
           background: rgba(0, 0, 0, 0.12);
           -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
         }
-        padding: 30px;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        outline: 0;
-        border: 0;
       }
+    }
+    .footer {
+      border-top: 1px dashed $border-color-base;
+      padding-top: 10px;
+      margin-top: 60px;
     }
   }
 }

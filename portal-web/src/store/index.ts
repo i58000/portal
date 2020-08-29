@@ -6,7 +6,7 @@ export interface Store {
 }
 
 const store: Store = {
-  account: null
+  account: null,
 };
 
 const observer = Vue.observable(store);

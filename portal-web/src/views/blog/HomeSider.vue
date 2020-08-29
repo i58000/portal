@@ -1,19 +1,12 @@
 <template>
     <div class="home-sider">
-        <MyProfile />
+        <template v-if="visibleSearcher">
+            <Operator />
+            <br>
+            <Searcher />
+        </template>
 
-        <!-- <div class="part3">
-            <a-skeleton avatar1
-                active
-                :paragraph="{ rows: 4 }" />
-            <a-skeleton avatar1
-                active
-                :paragraph="{ rows: 8 }" />
-            <a-skeleton avatar
-                active
-                :paragraph="{ rows: 3 }" />
-
-        </div> -->
+        <MyProfile v-else />
 
     </div>
 </template>
@@ -22,18 +15,29 @@
 import Vue from 'vue';
 import { Skeleton } from 'ant-design-vue';
 import MyProfile from '@/components/MyProfile.vue';
+import Searcher from './Searcher.vue';
+import Operator from './Operator.vue';
+
 export default Vue.extend({
   components: {
     'a-skeleton': Skeleton,
-    MyProfile
-  }
+    MyProfile,
+    Searcher,
+    Operator
+  },
+  computed: {
+    visibleSearcher(): boolean {
+      return this.$route.name === 'blogList';
+    }
+  },
+  methods: {}
 });
 </script>
 <style lang="scss" scoped>
 .home-sider {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 40px;
 
   .part3 {
     margin-top: 50px;

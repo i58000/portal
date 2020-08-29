@@ -1,4 +1,15 @@
+const path = require("path");
+
 module.exports = {
+  pages: {
+    "opensource-components": {
+      entry: "src/pages/opensource-components/main.ts",
+      template: "public/index.html",
+      filename: "opensource-components.html",
+      title: "opensource-components"
+    },
+    index: "src/main.ts"
+  },
   css: {
     loaderOptions: {
       sass: {
@@ -21,6 +32,12 @@ module.exports = {
                 "border-radius-base": "4px"
               }
             }
+          }
+        },
+        {
+          loader: "style-resources-loader",
+          options: {
+            patterns: [path.resolve(__dirname, "src/styles/imports.less")]
           }
         }
       ]

@@ -1,15 +1,12 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@src/*": [
-                "./src/*"
-            ],
-            "@config/*": [
-                "./config/*"
-            ]
-        },
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@config/*": ["./config/*"]
     },
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2015"]
+  }
 }

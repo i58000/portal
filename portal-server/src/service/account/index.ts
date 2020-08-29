@@ -29,6 +29,7 @@ export const checkAccount = async (username: string, password: string) => {
         return createErrorResponse(3002)
     }
     const results = await find({ username, password });
+    console.log(results)
     // if (results.length === 0) {
     //     return createErrorResponse(3006)
     // } else 

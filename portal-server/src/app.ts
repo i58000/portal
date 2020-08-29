@@ -7,8 +7,8 @@ import useMiddlewares from "./middleware";
 import "./ws";
 
 createConnection().then(conn => {
-  console.log(conn.options)
-})
+  console.log(conn.options);
+});
 
 const app = new Koa();
 

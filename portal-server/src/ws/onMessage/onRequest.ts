@@ -56,7 +56,6 @@ const onCreateGroup = async (data, ctx) => {
   const group = await createGroup(accounts, title);
 
   const accountIds = group.accounts.map(x => x.id);
-
   addSubscriber(accountIds, group.id);
 
   return { group };

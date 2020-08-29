@@ -45,7 +45,7 @@ const onQueryMessage = async (payload: QueryMessagePayload, ctx) => {
 };
 
 const onReadMessage = async (payload: ReadMessagePayload, ctx) => {
-  readMessage(payload, ctx.account);
+  readMessage(payload, ctx);
 };
 
 const onSendMessage = async (payload: SendMessagePayload, ctx) => {

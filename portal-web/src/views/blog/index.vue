@@ -1,11 +1,11 @@
 <template>
     <div class="home">
-        <CollapseTransition>
+        <!-- <CollapseTransition>
             <div class="top"
                 v-show="$route.meta && $route.meta.visibleCarousel">
                 <HomeCarousel />
             </div>
-        </CollapseTransition>
+        </CollapseTransition> -->
 
         <div class="bottom">
             <div class="left">
@@ -26,7 +26,10 @@ import BlogList from './BlogList.vue';
 import CollapseTransition from '@/components/collapse-transition';
 export default Vue.extend({
   name: 'home',
-  components: { HomeCarousel, HomeSider, BlogList, CollapseTransition }
+  components: { HomeCarousel, HomeSider, BlogList, CollapseTransition },
+  created() {
+    window.aaa = this;
+  }
 });
 </script>
 
@@ -43,10 +46,10 @@ export default Vue.extend({
   .bottom {
     display: flex;
     .left {
-      width: 75%;
+      width: 70%;
     }
     .right {
-      width: 25%;
+      width: 30%;
     }
     @media screen and (max-width: 1400px) {
       .left {

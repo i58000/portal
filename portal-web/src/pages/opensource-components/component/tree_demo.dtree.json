@@ -1,0 +1,794 @@
+[
+    {
+        "remark": "",
+        "libraries": [
+            {
+                "path": "jcr:/保险行业示例项目11/parameters.pl.xml",
+                "type": "Parameter"
+            },
+            {
+                "path": "jcr:/保险行业示例项目11/Customer.vl.xml",
+                "type": "Variable"
+            },
+            {
+                "path": "jcr:/保险行业示例项目11/Customer.vl.xml",
+                "type": "Constant"
+            },
+            {
+                "path": "jcr:/保险行业示例项目11/Customer.vl.xml",
+                "type": "Action"
+            }
+        ],
+        "variableTreeNode": {
+            "nodeType": "variable",
+            "left": {
+                "leftPart": {
+                    "variableName": "age",
+                    "variableLabel": "年龄",
+                    "variableCategory": "客户",
+                    "datatype": "Integer"
+                },
+                "type": "variable"
+            },
+            "conditionTreeNodes": [
+                {
+                    "nodeType": "condition",
+                    "value": { "content": "18", "valueType": "Input" },
+                    "op": "LessThenEquals",
+                    "variableTreeNodes": [
+                        {
+                            "nodeType": "variable",
+                            "left": {
+                                "leftPart": {
+                                    "variableName": "married",
+                                    "variableLabel": "婚否",
+                                    "variableCategory": "客户",
+                                    "datatype": "Boolean"
+                                },
+                                "type": "variable"
+                            },
+                            "conditionTreeNodes": [
+                                {
+                                    "nodeType": "condition",
+                                    "value": {
+                                        "content": "true",
+                                        "valueType": "Input"
+                                    },
+                                    "op": "Equals",
+                                    "variableTreeNodes": [
+                                        {
+                                            "nodeType": "variable",
+                                            "left": {
+                                                "leftPart": {
+                                                    "variableName": "gender",
+                                                    "variableLabel": "性别",
+                                                    "variableCategory": "客户",
+                                                    "datatype": "Boolean"
+                                                },
+                                                "type": "variable"
+                                            },
+                                            "conditionTreeNodes": [
+                                                {
+                                                    "nodeType": "condition",
+                                                    "value": {
+                                                        "content": "true",
+                                                        "valueType": "Input"
+                                                    },
+                                                    "op": "Equals",
+                                                    "actionTreeNodes": [
+                                                        {
+                                                            "nodeType": "action",
+                                                            "actions": [
+                                                                {
+                                                                    "datatype": "Integer",
+                                                                    "variableCategory": "客户",
+                                                                    "variableLabel": "等级",
+                                                                    "variableName": "level",
+                                                                    "actionType": "VariableAssign",
+                                                                    "type": "variable",
+                                                                    "value": {
+                                                                        "content": "1",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "priority": 0
+                                                                },
+                                                                {
+                                                                    "datatype": "Integer",
+                                                                    "variableCategory": "客户",
+                                                                    "variableLabel": "等级",
+                                                                    "variableName": "level",
+                                                                    "actionType": "VariableAssign",
+                                                                    "type": "variable",
+                                                                    "value": {
+                                                                        "content": "1111",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "priority": 0
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "nodeType": "condition",
+                                                    "value": {
+                                                        "content": "false",
+                                                        "valueType": "Input"
+                                                    },
+                                                    "op": "Equals",
+                                                    "actionTreeNodes": [
+                                                        {
+                                                            "nodeType": "action",
+                                                            "actions": [
+                                                                {
+                                                                    "datatype": "Integer",
+                                                                    "variableCategory": "客户",
+                                                                    "variableLabel": "等级",
+                                                                    "variableName": "level",
+                                                                    "actionType": "VariableAssign",
+                                                                    "type": "variable",
+                                                                    "value": {
+                                                                        "content": "5",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "priority": 0
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "nodeType": "condition",
+                                    "value": {
+                                        "content": "false",
+                                        "valueType": "Input"
+                                    },
+                                    "op": "Equals",
+                                    "variableTreeNodes": [
+                                        {
+                                            "nodeType": "variable",
+                                            "left": {
+                                                "leftPart": {
+                                                    "variableName": "gender",
+                                                    "variableLabel": "性别",
+                                                    "variableCategory": "客户",
+                                                    "datatype": "Boolean"
+                                                },
+                                                "type": "variable"
+                                            },
+                                            "conditionTreeNodes": [
+                                                {
+                                                    "nodeType": "condition",
+                                                    "value": {
+                                                        "content": "true",
+                                                        "valueType": "Input"
+                                                    },
+                                                    "op": "Equals",
+                                                    "actionTreeNodes": [
+                                                        {
+                                                            "nodeType": "action",
+                                                            "actions": [
+                                                                {
+                                                                    "datatype": "Integer",
+                                                                    "variableCategory": "客户",
+                                                                    "variableLabel": "等级",
+                                                                    "variableName": "level",
+                                                                    "actionType": "VariableAssign",
+                                                                    "type": "variable",
+                                                                    "value": {
+                                                                        "content": "3",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "priority": 0
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "nodeType": "condition",
+                                                    "value": {
+                                                        "content": "false",
+                                                        "valueType": "Input"
+                                                    },
+                                                    "op": "Equals",
+                                                    "actionTreeNodes": [
+                                                        {
+                                                            "nodeType": "action",
+                                                            "actions": [
+                                                                {
+                                                                    "datatype": "Integer",
+                                                                    "variableCategory": "客户",
+                                                                    "variableLabel": "等级",
+                                                                    "variableName": "level",
+                                                                    "actionType": "VariableAssign",
+                                                                    "type": "variable",
+                                                                    "value": {
+                                                                        "content": "6",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "priority": 0
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nodeType": "condition",
+                    "value": { "content": "18", "valueType": "Input" },
+                    "op": "GreaterThen",
+                    "conditionTreeNodes": [
+                        {
+                            "nodeType": "condition",
+                            "value": { "content": "30", "valueType": "Input" },
+                            "op": "LessThenEquals",
+                            "variableTreeNodes": [
+                                {
+                                    "nodeType": "variable",
+                                    "left": {
+                                        "leftPart": {
+                                            "variableName": "married",
+                                            "variableLabel": "婚否",
+                                            "variableCategory": "客户",
+                                            "datatype": "Boolean"
+                                        },
+                                        "type": "variable"
+                                    },
+                                    "conditionTreeNodes": [
+                                        {
+                                            "nodeType": "condition",
+                                            "value": {
+                                                "content": "true",
+                                                "valueType": "Input"
+                                            },
+                                            "op": "Equals",
+                                            "variableTreeNodes": [
+                                                {
+                                                    "nodeType": "variable",
+                                                    "left": {
+                                                        "leftPart": {
+                                                            "variableName": "gender",
+                                                            "variableLabel": "性别",
+                                                            "variableCategory": "客户",
+                                                            "datatype": "Boolean"
+                                                        },
+                                                        "type": "variable"
+                                                    },
+                                                    "conditionTreeNodes": [
+                                                        {
+                                                            "nodeType": "condition",
+                                                            "value": {
+                                                                "content": "true",
+                                                                "valueType": "Input"
+                                                            },
+                                                            "op": "Equals",
+                                                            "actionTreeNodes": [
+                                                                {
+                                                                    "nodeType": "action",
+                                                                    "actions": [
+                                                                        {
+                                                                            "datatype": "Integer",
+                                                                            "variableCategory": "客户",
+                                                                            "variableLabel": "等级",
+                                                                            "variableName": "level",
+                                                                            "actionType": "VariableAssign",
+                                                                            "type": "variable",
+                                                                            "value": {
+                                                                                "content": "10",
+                                                                                "valueType": "Input"
+                                                                            },
+                                                                            "priority": 0
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "nodeType": "condition",
+                                                            "value": {
+                                                                "content": "false",
+                                                                "valueType": "Input"
+                                                            },
+                                                            "op": "Equals",
+                                                            "actionTreeNodes": [
+                                                                {
+                                                                    "nodeType": "action",
+                                                                    "actions": [
+                                                                        {
+                                                                            "datatype": "Integer",
+                                                                            "variableCategory": "客户",
+                                                                            "variableLabel": "等级",
+                                                                            "variableName": "level",
+                                                                            "actionType": "VariableAssign",
+                                                                            "type": "variable",
+                                                                            "value": {
+                                                                                "content": "9",
+                                                                                "valueType": "Input"
+                                                                            },
+                                                                            "priority": 0
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "nodeType": "condition",
+                                            "value": {
+                                                "content": "false",
+                                                "valueType": "Input"
+                                            },
+                                            "op": "Equals",
+                                            "variableTreeNodes": [
+                                                {
+                                                    "nodeType": "variable",
+                                                    "left": {
+                                                        "leftPart": {
+                                                            "variableName": "gender",
+                                                            "variableLabel": "性别",
+                                                            "variableCategory": "客户",
+                                                            "datatype": "Boolean"
+                                                        },
+                                                        "type": "variable"
+                                                    },
+                                                    "conditionTreeNodes": [
+                                                        {
+                                                            "nodeType": "condition",
+                                                            "value": {
+                                                                "content": "true",
+                                                                "valueType": "Input"
+                                                            },
+                                                            "op": "Equals",
+                                                            "actionTreeNodes": [
+                                                                {
+                                                                    "nodeType": "action",
+                                                                    "actions": [
+                                                                        {
+                                                                            "datatype": "Integer",
+                                                                            "variableCategory": "客户",
+                                                                            "variableLabel": "等级",
+                                                                            "variableName": "level",
+                                                                            "actionType": "VariableAssign",
+                                                                            "type": "variable",
+                                                                            "value": {
+                                                                                "content": "12",
+                                                                                "valueType": "Input"
+                                                                            },
+                                                                            "priority": 0
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "nodeType": "condition",
+                                                            "value": {
+                                                                "content": "false",
+                                                                "valueType": "Input"
+                                                            },
+                                                            "op": "Equals",
+                                                            "actionTreeNodes": [
+                                                                {
+                                                                    "nodeType": "action",
+                                                                    "actions": [
+                                                                        {
+                                                                            "datatype": "Integer",
+                                                                            "variableCategory": "客户",
+                                                                            "variableLabel": "等级",
+                                                                            "variableName": "level",
+                                                                            "actionType": "VariableAssign",
+                                                                            "type": "variable",
+                                                                            "value": {
+                                                                                "content": "11",
+                                                                                "valueType": "Input"
+                                                                            },
+                                                                            "priority": 0
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "nodeType": "condition",
+                            "value": { "content": "30", "valueType": "Input" },
+                            "op": "GreaterThen",
+                            "conditionTreeNodes": [
+                                {
+                                    "nodeType": "condition",
+                                    "value": {
+                                        "content": "50",
+                                        "valueType": "Input"
+                                    },
+                                    "op": "LessThenEquals",
+                                    "variableTreeNodes": [
+                                        {
+                                            "nodeType": "variable",
+                                            "left": {
+                                                "leftPart": {
+                                                    "variableName": "married",
+                                                    "variableLabel": "婚否",
+                                                    "variableCategory": "客户",
+                                                    "datatype": "Boolean"
+                                                },
+                                                "type": "variable"
+                                            },
+                                            "conditionTreeNodes": [
+                                                {
+                                                    "nodeType": "condition",
+                                                    "value": {
+                                                        "content": "true",
+                                                        "valueType": "Input"
+                                                    },
+                                                    "op": "Equals",
+                                                    "variableTreeNodes": [
+                                                        {
+                                                            "nodeType": "variable",
+                                                            "left": {
+                                                                "leftPart": {
+                                                                    "variableName": "gender",
+                                                                    "variableLabel": "性别",
+                                                                    "variableCategory": "客户",
+                                                                    "datatype": "Boolean"
+                                                                },
+                                                                "type": "variable"
+                                                            },
+                                                            "conditionTreeNodes": [
+                                                                {
+                                                                    "nodeType": "condition",
+                                                                    "value": {
+                                                                        "content": "true",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "op": "Equals",
+                                                                    "actionTreeNodes": [
+                                                                        {
+                                                                            "nodeType": "action",
+                                                                            "actions": [
+                                                                                {
+                                                                                    "datatype": "Integer",
+                                                                                    "variableCategory": "客户",
+                                                                                    "variableLabel": "等级",
+                                                                                    "variableName": "level",
+                                                                                    "actionType": "VariableAssign",
+                                                                                    "type": "variable",
+                                                                                    "value": {
+                                                                                        "content": "20",
+                                                                                        "valueType": "Input"
+                                                                                    },
+                                                                                    "priority": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "nodeType": "condition",
+                                                                    "value": {
+                                                                        "content": "true",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "op": "NotEquals",
+                                                                    "actionTreeNodes": [
+                                                                        {
+                                                                            "nodeType": "action",
+                                                                            "actions": [
+                                                                                {
+                                                                                    "datatype": "Integer",
+                                                                                    "variableCategory": "客户",
+                                                                                    "variableLabel": "等级",
+                                                                                    "variableName": "level",
+                                                                                    "actionType": "VariableAssign",
+                                                                                    "type": "variable",
+                                                                                    "value": {
+                                                                                        "content": "15",
+                                                                                        "valueType": "Input"
+                                                                                    },
+                                                                                    "priority": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "nodeType": "condition",
+                                                    "value": {
+                                                        "content": "true",
+                                                        "valueType": "Input"
+                                                    },
+                                                    "op": "NotEquals",
+                                                    "variableTreeNodes": [
+                                                        {
+                                                            "nodeType": "variable",
+                                                            "left": {
+                                                                "leftPart": {
+                                                                    "variableName": "gender",
+                                                                    "variableLabel": "性别",
+                                                                    "variableCategory": "客户",
+                                                                    "datatype": "Boolean"
+                                                                },
+                                                                "type": "variable"
+                                                            },
+                                                            "conditionTreeNodes": [
+                                                                {
+                                                                    "nodeType": "condition",
+                                                                    "value": {
+                                                                        "content": "true",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "op": "Equals",
+                                                                    "actionTreeNodes": [
+                                                                        {
+                                                                            "nodeType": "action",
+                                                                            "actions": [
+                                                                                {
+                                                                                    "datatype": "Integer",
+                                                                                    "variableCategory": "客户",
+                                                                                    "variableLabel": "等级",
+                                                                                    "variableName": "level",
+                                                                                    "actionType": "VariableAssign",
+                                                                                    "type": "variable",
+                                                                                    "value": {
+                                                                                        "content": "22",
+                                                                                        "valueType": "Input"
+                                                                                    },
+                                                                                    "priority": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "nodeType": "condition",
+                                                                    "value": {
+                                                                        "content": "true",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "op": "NotEquals",
+                                                                    "actionTreeNodes": [
+                                                                        {
+                                                                            "nodeType": "action",
+                                                                            "actions": [
+                                                                                {
+                                                                                    "datatype": "Integer",
+                                                                                    "variableCategory": "客户",
+                                                                                    "variableLabel": "等级",
+                                                                                    "variableName": "level",
+                                                                                    "actionType": "VariableAssign",
+                                                                                    "type": "variable",
+                                                                                    "value": {
+                                                                                        "content": "18",
+                                                                                        "valueType": "Input"
+                                                                                    },
+                                                                                    "priority": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "nodeType": "condition",
+                                    "value": {
+                                        "content": "50",
+                                        "valueType": "Input"
+                                    },
+                                    "op": "GreaterThen",
+                                    "variableTreeNodes": [
+                                        {
+                                            "nodeType": "variable",
+                                            "left": {
+                                                "leftPart": {
+                                                    "variableName": "married",
+                                                    "variableLabel": "婚否",
+                                                    "variableCategory": "客户",
+                                                    "datatype": "Boolean"
+                                                },
+                                                "type": "variable"
+                                            },
+                                            "conditionTreeNodes": [
+                                                {
+                                                    "nodeType": "condition",
+                                                    "value": {
+                                                        "content": "true",
+                                                        "valueType": "Input"
+                                                    },
+                                                    "op": "Equals",
+                                                    "variableTreeNodes": [
+                                                        {
+                                                            "nodeType": "variable",
+                                                            "left": {
+                                                                "leftPart": {
+                                                                    "variableName": "gender",
+                                                                    "variableLabel": "性别",
+                                                                    "variableCategory": "客户",
+                                                                    "datatype": "Boolean"
+                                                                },
+                                                                "type": "variable"
+                                                            },
+                                                            "conditionTreeNodes": [
+                                                                {
+                                                                    "nodeType": "condition",
+                                                                    "value": {
+                                                                        "content": "true",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "op": "Equals",
+                                                                    "actionTreeNodes": [
+                                                                        {
+                                                                            "nodeType": "action",
+                                                                            "actions": [
+                                                                                {
+                                                                                    "datatype": "Integer",
+                                                                                    "variableCategory": "客户",
+                                                                                    "variableLabel": "等级",
+                                                                                    "variableName": "level",
+                                                                                    "actionType": "VariableAssign",
+                                                                                    "type": "variable",
+                                                                                    "value": {
+                                                                                        "content": "3",
+                                                                                        "valueType": "Input"
+                                                                                    },
+                                                                                    "priority": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "nodeType": "condition",
+                                                                    "value": {
+                                                                        "content": "true",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "op": "NotEquals",
+                                                                    "actionTreeNodes": [
+                                                                        {
+                                                                            "nodeType": "action",
+                                                                            "actions": [
+                                                                                {
+                                                                                    "datatype": "Integer",
+                                                                                    "variableCategory": "客户",
+                                                                                    "variableLabel": "等级",
+                                                                                    "variableName": "level",
+                                                                                    "actionType": "VariableAssign",
+                                                                                    "type": "variable",
+                                                                                    "value": {
+                                                                                        "content": "3",
+                                                                                        "valueType": "Input"
+                                                                                    },
+                                                                                    "priority": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "nodeType": "condition",
+                                                    "value": {
+                                                        "content": "true",
+                                                        "valueType": "Input"
+                                                    },
+                                                    "op": "NotEquals",
+                                                    "variableTreeNodes": [
+                                                        {
+                                                            "nodeType": "variable",
+                                                            "left": {
+                                                                "leftPart": {
+                                                                    "variableName": "gender",
+                                                                    "variableLabel": "性别",
+                                                                    "variableCategory": "客户",
+                                                                    "datatype": "Boolean"
+                                                                },
+                                                                "type": "variable"
+                                                            },
+                                                            "conditionTreeNodes": [
+                                                                {
+                                                                    "nodeType": "condition",
+                                                                    "value": {
+                                                                        "content": "true",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "op": "Equals",
+                                                                    "actionTreeNodes": [
+                                                                        {
+                                                                            "nodeType": "action",
+                                                                            "actions": [
+                                                                                {
+                                                                                    "datatype": "Integer",
+                                                                                    "variableCategory": "客户",
+                                                                                    "variableLabel": "等级",
+                                                                                    "variableName": "level",
+                                                                                    "actionType": "VariableAssign",
+                                                                                    "type": "variable",
+                                                                                    "value": {
+                                                                                        "content": "0",
+                                                                                        "valueType": "Input"
+                                                                                    },
+                                                                                    "priority": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "nodeType": "condition",
+                                                                    "value": {
+                                                                        "content": "true",
+                                                                        "valueType": "Input"
+                                                                    },
+                                                                    "op": "NotEquals",
+                                                                    "actionTreeNodes": [
+                                                                        {
+                                                                            "nodeType": "action",
+                                                                            "actions": [
+                                                                                {
+                                                                                    "datatype": "Integer",
+                                                                                    "variableCategory": "客户",
+                                                                                    "variableLabel": "等级",
+                                                                                    "variableName": "level",
+                                                                                    "actionType": "VariableAssign",
+                                                                                    "type": "variable",
+                                                                                    "value": {
+                                                                                        "content": "2",
+                                                                                        "valueType": "Input"
+                                                                                    },
+                                                                                    "priority": 0
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

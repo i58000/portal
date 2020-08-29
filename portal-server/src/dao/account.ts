@@ -22,6 +22,7 @@ export const find = async ({ id, username, password, nickname, pager }: QueryPar
         if (nickname) query = query.andWhere("account.nickname = :nickname", { nickname: nickname })
         if (password) query = query.andWhere("account.password = :password", { password: password })
     }
+    console.log(query.getSql())
     if (pager) {
         query.skip(pager.size * pager.index).take(pager.size)
     }

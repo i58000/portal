@@ -12,6 +12,7 @@ export const update = async ({ groupId, accountId, exceptAccountId, change }: an
         params['account_id'] = accountId
     }
     const rels = await repo.find(params)
+    
     for (let index = 0; index < rels.length; index++) {
         const rel = rels[index];
         if (exceptAccountId && rel.account_id === exceptAccountId) {
@@ -20,7 +21,6 @@ export const update = async ({ groupId, accountId, exceptAccountId, change }: an
         change(rel)
         await repo.save(rel)
     }
-
 
     return;
 };

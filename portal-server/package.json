@@ -17,6 +17,8 @@
         "typescript": "^3.9.5"
     },
     "dependencies": {
+        "captchapng": "0.0.1",
+        "http": "0.0.1-security",
         "jsonwebtoken": "^8.5.1",
         "koa-body": "^4.2.0",
         "koa-bodyparser": "^4.3.0",

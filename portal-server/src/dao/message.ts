@@ -22,21 +22,25 @@ export const find = async ({ id, beforeTimestamp, groupId, read, count }: QueryM
                 .select('gg.id')
                 .getQuery()
             return 'm.group_id in ' + `( ${subQuery} )`
-        }, { accountId }).orderBy('m.timestamp', 'DESC')
+        }, { accountId })
 
     if (id !== undefined) query.andWhere("m.id = :id", { id })
     if (groupId !== undefined) query.andWhere("m.group_id = :groupId", { groupId })
     if (read !== undefined) query.andWhere("m.read = :read", { read })
 
-    if (beforeTimestamp !== undefined) query.andWhere('unix_timestamp(m.timestamp) < :beforeTimestamp', { beforeTimestamp: beforeTimestamp / 1000 })
+    if (beforeTimestamp !== undefined) query.andWhere('m.timestamp < :beforeTimestamp', { beforeTimestamp })
     if (count !== undefined) query.take(count);
 
+
+    console.log(accountId)
+    console.log(query.getSql())
 
     return await query.getMany();
 };
 
 export const insert = async ({ groupId, content, timestamp }: SendMessagePayload, account: Account) => {
 
+    console.log('----', content)
     const timeServer = new Date();
     const repo = getRepository(ChatMessage);
     const temp = new ChatMessage({

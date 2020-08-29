@@ -1,13 +1,13 @@
 {
-    "type": "mysql",
-    "host": "114.115.213.101",
-    "port": 3306,
-    "username": "root",
-    "password": "wodainimenda",
-    "database": "portal_dev",
-    "entities": [
-        "src/entity/*.ts"
-    ],
-    "synchronize": false,
-    "logging": false
+  "type": "mysql",
+  "host": "114.115.213.101",
+  "port": 3306,
+  "username": "root",
+  "password": "wodainimenda",
+  "database": "portal_dev",
+  "entities": [
+    "src/entity/*.ts"
+  ],
+  "synchronize": false,
+  "logging": true
 }
