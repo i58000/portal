@@ -108,7 +108,10 @@ export default Vue.extend({
   },
   computed: {
     isAuthor(): boolean {
-      return this.$store.account.id === this.article.account?.id;
+      return (
+        !!this.$store.account &&
+        this.$store.account?.id === this.article.account?.id
+      );
       // return state.isAdmin;
     },
     loading() {
