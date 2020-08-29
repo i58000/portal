@@ -16,6 +16,6 @@ const app = new Koa();
 useMiddlewares(app);
 
 //设置监听端口
-app.listen(3001, () => {
-  console.log("服务器开启 127.0.0.1:3001");
+app.listen(7004, () => {
+  console.log("服务器开启 127.0.0.1:7004");
 });
