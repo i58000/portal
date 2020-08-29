@@ -5,7 +5,12 @@ import { TOKEN_SECRET } from "@config/index";
 
 const jwt = KoaJwt({ secret: TOKEN_SECRET }).unless({
   // 登录，注册接口不需要验证
-  path: [/^\/api\/v1\/account\/login/, /^\/api\/v1\/account\/register/]
+  path: [
+    /^\/api\/v1\/account\/login/,
+    /^\/api\/v1\/account\/register/,
+    /^\/api\/v1\/tag/,
+    /^\/api\/v1\/article/,
+  ]
 });
 
 const interceptor = (ctx, next) => {
