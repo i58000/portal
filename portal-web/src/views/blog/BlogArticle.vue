@@ -145,8 +145,13 @@ export default Vue.extend({
       async handler(val) {
         this.article = {};
         this.article = await getArticle(val);
+        // title设置
+        document.title = this.title;
       }
     }
+  },
+  beforeDestroy() {
+    document.title = process.env.VUE_APP_TITLE
   },
   methods: {
     cancel() {
