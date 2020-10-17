@@ -200,7 +200,7 @@ export default Vue.extend({
     }
 
     .title {
-      height: 80px;
+      min-height: 80px;
       text-align: center;
       font-size: 40px;
       font-weight: bold;
