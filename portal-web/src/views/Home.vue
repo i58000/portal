@@ -4,7 +4,7 @@
         </div>
         <div class="container">
             <div class="title">
-                &nbsp; Hi, 别来无恙啊~
+                &nbsp; Hello World
             </div>
             <div class="progress">
                 慢慢砌砖，本站完成度：

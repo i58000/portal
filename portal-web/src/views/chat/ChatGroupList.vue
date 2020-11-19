@@ -2,14 +2,19 @@
   <div class="chat-group-list">
     <div
       class="chat-group-item"
-      :class="{active: item.id === value}"
+      :class="{ active: item.id === value }"
       v-for="item in groupsSorted"
       :key="item.id"
       @click="onclick(item)"
     >
-      <div class="text">[{{ item.accounts.length }}] - {{ getTitle(item) }}</div>
+      <div class="text">
+        [{{ item.accounts ? item.accounts.length : "*" }}] -
+        {{ getTitle(item) }}
+      </div>
       <transition name="pop">
-        <div class="unread" v-if="item._unread">{{ item._unread | filterUnread }}</div>
+        <div class="unread" v-if="item._unread">
+          {{ item._unread | filterUnread }}
+        </div>
       </transition>
     </div>
   </div>
@@ -59,7 +64,7 @@ export default Vue.extend({
     getTitle(item: any) {
       const accounts = item.accounts;
       const accountId = this.$store.account?.id;
-      if (accounts.length === 2) {
+      if (accounts?.length === 2) {
         return accounts.find((x: any) => x.id !== accountId).nickname;
       } else {
         return item.title;

@@ -46,6 +46,7 @@ module.exports = {
       proxy: {
         "/api": {
           target: `http://localhost:7004/api`,
+          // target: `http://anjinshuo.com/api`,
           changeOrigin: true,
           pathRewrite: {
             "^/api": ""
