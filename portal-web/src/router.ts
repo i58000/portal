@@ -73,6 +73,13 @@ export default new Router({
             label: "开源组件",
             href: "/opensource-components.html"
           }
+        },
+        {
+          path: "game",
+          meta: {
+            label: "一个解谜游戏",
+            href: "/game"
+          }
         }
       ]
     },
