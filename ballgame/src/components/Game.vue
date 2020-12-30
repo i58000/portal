@@ -2,6 +2,17 @@
 <template>
   <div class="game">
     <div class="table">
+      <div class="table-row all-balls">
+        <div v-for="(clrStr, index) in Colors.slice(0, 6)" :key="index">
+          <div
+            class="ball"
+            :class="{
+              [clrStr]: true,
+              used: state.game.table[state.game.round].indexOf(index) > -1,
+            }"
+          ></div>
+        </div>
+      </div>
       <div
         v-for="(col, i) in state.game.table"
         :key="i"
@@ -34,8 +45,9 @@
       </div>
       <!-- 答案列 -->
       <div class="table-row answer">
-        <div class="table-ceil">
+        <div class="table-ceil help" @click="help">
           <!-- 空占位 -->
+          帮助
         </div>
         <div v-for="(item, j) in state.game.answer" :key="j" class="table-ceil">
           <div
@@ -56,7 +68,7 @@
         :disabled="!isFill"
         @click="validate"
       >
-        <span v-if="!isFill">请填补所有空白</span>
+        <span v-if="!isFill">请填充当前行</span>
         <span v-else-if="state.game.round < 5">试试吧</span>
         <span v-else>最后一次！确认。</span>
       </button>
@@ -95,6 +107,13 @@ const onClickBall = (pos) => {
 
 const validate = () => {
   state.game.validate();
+};
+
+const help = () => {
+  alert(`【目标】推理出顶部的4个问号球的颜色和位置。
+【提示】在每行的左侧：
+    橙色表示颜色和位置均正确的个数，
+    白色为颜色正确但位置不正确的个数。`);
 };
 
 const computedTips = computed(() => {
@@ -142,6 +161,7 @@ $pink: #f759ab;
 $purple: #722ed1;
 
 .game {
+  // height: 100vh;
   min-height: calc(100vh - 100px);
   width: 100%;
   display: flex;
@@ -192,8 +212,8 @@ $purple: #722ed1;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px #eee;
-    border: 1px solid #eee;
+    box-shadow: 0 0 10px #ccc;
+    border: 2px solid #fff;
   }
   .table-tips {
     border-right: 1px solid #0001;
@@ -225,44 +245,68 @@ $purple: #722ed1;
       box-shadow: none;
     }
   }
+}
 
+.help {
+  color: #888;
+}
+.all-balls {
+  height: 40px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee !important;
+  border: 1px solid #ddd !important;
   .ball {
-    &.answer {
-      background: #fff;
-    }
-    &.empty {
-      box-shadow: inset 0 0 6px #0002;
-      transform: scale(1.1);
-    }
-    &.blue {
-      background: $blue;
-    }
-    &.red {
-      background: $red;
-    }
-    &.yellow {
-      background: $yellow;
-    }
-    &.orange {
-      background: $orange;
-    }
-    &.green {
-      background: $green;
-    }
-    &.pink {
-      background: $pink;
-    }
-    &.white {
-      background: $white;
-    }
-    &.purple {
-      background: $purple;
+    border-radius: 15px;
+    height: 15px;
+    width: 15px;
+    box-shadow: 0 0 10px #bbb;
+    border: 2px solid #eee !important;
+    transition: all 0.3s;
+    &.used {
+      transform: scale(0.6);
+      opacity: 0.6;
     }
   }
 }
 
+.ball {
+  &.answer {
+    background: #fff;
+  }
+  &.empty {
+    box-shadow: inset 0 0 6px #0002;
+    transform: scale(1.1);
+  }
+  &.blue {
+    background: $blue;
+  }
+  &.red {
+    background: $red;
+  }
+  &.yellow {
+    background: $yellow;
+  }
+  &.orange {
+    background: $orange;
+  }
+  &.green {
+    background: $green;
+  }
+  &.pink {
+    background: $pink;
+  }
+  &.white {
+    background: $white;
+  }
+  &.purple {
+    background: $purple;
+  }
+}
+
 .buttons {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 button {
   /* padding: 10px; */

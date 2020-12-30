@@ -52,15 +52,19 @@ export default class Game {
         }
         return true;
     }
-
-    set(pos, val) {
-        this.table[this.round][pos] = val;
-    }
-
     setNext(pos) {
-        const oldValue = this.table[this.round][pos];
-        this.table[this.round][pos] =
-            oldValue === null ? 0 : (oldValue + 1) % COUNT_COLOR;
+        const currentRow = this.table[this.round]
+        const oldValue = currentRow[pos];
+
+        let result = oldValue;
+        if (oldValue === null) {
+            result = 0;
+        }
+        while (currentRow.indexOf(result) !== -1) {
+            result = (result + 1) % (COUNT_COLOR + 1);
+        }
+
+        this.table[this.round][pos] = result === 6 ? null : result
     }
 }
 
@@ -90,10 +94,18 @@ function _validate(a1, a2) {
 
 function _createAnswer() {
     const len = COUNT_COLOR;
-    return [random(len), random(len), random(len), random(len)];
+    const usableSet = new Set([0, 1, 2, 3, 4, 5])
+    const result = []
+    // 取4个
+    for (let i = 0; i < 4; i++) {
+        const target = [...usableSet][random(len - i)]
+        usableSet.delete(target)
+        result.push(target)
+    }
+    return result;
 }
 
 function random(len) {
-    return Math.floor(Math.random() * len); //可均衡获取0到9的随机整数。
+    return Math.floor(Math.random() * len); //可均衡获取0到len-1的随机整数。
 }
 
