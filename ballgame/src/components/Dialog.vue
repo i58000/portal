@@ -1,10 +1,11 @@
 <template>
     <teleport to="body">
         <div ref="el"
+            class="mask"></div>
+        <div v-show="visible"
             class="dialog"
             @click="onClickMask">
-            <div v-show="visible"
-                class="container"
+            <div class="container"
                 @click.stop>
                 <div class="content">
                     <slot></slot>
@@ -36,7 +37,6 @@ export default {
     const el = ref(null);
     const _visible = computed(() => props.visible);
     watch(_visible, (v) => {
-      console.log(v);
       const style = el.value.style;
       if (v) {
         Object.assign(style, {
@@ -45,7 +45,7 @@ export default {
         });
         setTimeout(() => {
           Object.assign(style, {
-            opacity: 1,
+            opacity: 0.3,
           });
         }, 0);
       } else {
@@ -69,14 +69,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dialog {
+.mask {
   transition: 0.3s;
-  visibility: hidden;
-  opacity: 0;
+  background: #000;
+  top: 0;
+  left: 0;
   position: fixed;
   height: 100%;
   width: 100%;
-  background: #0006;
+  opacity: 0;
+  visibility: hidden;
+}
+.dialog {
+  transition: 0.3s;
+  position: fixed;
+  height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
   display: flex;
