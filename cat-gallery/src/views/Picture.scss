@@ -1,0 +1,29 @@
+.Picture {
+  background: #000d;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 40px;
+    width: 40px;
+    background: #9999;
+    border-radius: 100px;
+
+    .icon {
+      position: absolute;
+      top: 11px;
+      left: 9px;
+    }
+  }
+}

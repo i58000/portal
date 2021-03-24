@@ -1,0 +1,18 @@
+.Gallery {
+  margin: 10px 10px;
+}
+.Node {
+  //   .container {
+  // padding-bottom: 10px;
+  padding: 10px 20px 0px 0px;
+  img {
+    width: 100%;
+    object-fit: cover;
+    min-height: 50px;
+    max-height: 280px;
+    // margin: 10px 20px 0px 0px;
+    border-radius: 10px;
+    overflow: hidden;
+    // }
+  }
+}
