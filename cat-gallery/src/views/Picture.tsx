@@ -1,7 +1,7 @@
 import "./Picture.scss";
 
 const Picture: React.FC<{ src: string | undefined; onClose: any }> = ({ src, onClose }) => {
-  const s = "/img/" + src;
+  const s = "cat/img/" + src;
   return (
     <div className="Picture">
       <img src={s} />

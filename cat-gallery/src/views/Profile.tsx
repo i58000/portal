@@ -4,7 +4,7 @@ const title = "Safegg";
 const desc =
   "cat Safegg cat cat gallery cat cat Safegg cat, cat gallery cat gallery Safegg cat cat Safegg cat.";
 
-const srcAvatar = '/img/avatar.jpg'
+const srcAvatar = 'cat/img/avatar.jpg'
 
 const Profile: React.FC = () => {
   return (

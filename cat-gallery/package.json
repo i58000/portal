@@ -2,6 +2,7 @@
   "name": "cat-gallery",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/cat/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -45,6 +46,7 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/react-router-dom": "^5.1.7",
+    "cross-env": "^7.0.3",
     "sass": "^1.32.8",
     "typescript": "^4.2.3"
   }

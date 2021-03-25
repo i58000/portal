@@ -15,7 +15,7 @@ const NodeComponent: React.FC<NodeComponentProps> = ({
   timestamp,
   src,
 }) => {
-  const s = "img/" + src;
+  const s = "cat/img/" + src;
 
   return (
     <div className="Node">
