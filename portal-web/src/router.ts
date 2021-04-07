@@ -80,6 +80,13 @@ export default new Router({
             label: "一个解谜游戏",
             href: "/game"
           }
+        },
+        {
+          path: "cat",
+          meta: {
+            label: "我的猫",
+            href: "/cat"
+          }
         }
       ]
     },
