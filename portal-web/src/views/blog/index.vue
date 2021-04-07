@@ -26,10 +26,7 @@ import BlogList from './BlogList.vue';
 import CollapseTransition from '@/components/collapse-transition';
 export default Vue.extend({
   name: 'home',
-  components: { HomeCarousel, HomeSider, BlogList, CollapseTransition },
-  created() {
-    window.aaa = this;
-  }
+  components: { HomeCarousel, HomeSider, BlogList, CollapseTransition }
 });
 </script>
 
