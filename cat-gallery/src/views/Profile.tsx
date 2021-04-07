@@ -2,7 +2,7 @@ import "./profile.scss";
 
 const title = "Safegg";
 const desc =
-  "cat Safegg cat cat gallery cat cat Safegg cat, cat gallery cat gallery Safegg cat cat Safegg cat.";
+  "安全蛋是一只两岁不到的香槟色英短（其实是土猫）";
 
 const srcAvatar = 'cat/img/avatar.jpg'
 
