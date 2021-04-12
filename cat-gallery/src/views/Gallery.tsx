@@ -1,8 +1,8 @@
 import Timeline from "../components/Timeline";
 import Profile from "./Profile";
 
-import "./gallery.scss";
-import { useState } from "react";
+import "../styles/gallery.scss";
+import { UIEvent, useRef, useState } from "react";
 import Picture from "./Picture";
 interface NodeComponentProps {
   id: string;
@@ -15,10 +15,10 @@ const NodeComponent: React.FC<NodeComponentProps> = ({
   timestamp,
   src,
 }) => {
-  const s = "cat/img/" + src;
+  const s = process.env.PUBLIC_URL + "/img/" + src;
 
   return (
-    <div className="Node">
+    <div className="NodeImg">
       <img src={s} />
     </div>
   );
@@ -39,26 +39,64 @@ const nodes: NodeComponentProps[] = [
 ];
 
 const Gallery: React.FC = ({ children }) => {
-  const [currentId, setCurrentId] = useState(null as null | string)
+  const [currentId, setCurrentId] = useState(null as null | string);
+  const [centerIndex, setCenterIndex] = useState(0);
+
+  const refGallery = useRef<HTMLInputElement | null>(null);
+  const refTimeline = useRef<HTMLInputElement | null>(null);
+  const refProfile = useRef<HTMLInputElement | null>(null);
+
   const onClick = (id: string) => () => {
-    setCurrentId(id)
-  }
+    setCurrentId(id);
+  };
   const onClose = () => {
-    setCurrentId(null)
+    setCurrentId(null);
+  };
 
-  }
+  const onScroll = (evt: UIEvent) => {
+    if (!refGallery.current || !refTimeline.current || !refProfile.current) {
+      return;
+    }
+    const scrollTop =
+      refGallery.current.scrollTop + refProfile.current.clientHeight + 120;
+    let min = Infinity;
+    let target = 0;
+    if (refTimeline) {
+      const arr = refTimeline.current?.children;
+      for (let i = 0; i < arr.length; i++) {
+        const element = arr[i] as HTMLElement;
+        const gap = Math.abs(element.offsetTop - scrollTop);
+        if (gap < min) {
+          min = gap;
+          target = i;
+        }
+      }
+    }
+    setCenterIndex(target);
+  };
+
   return (
-    <div className="Gallery">
-      <Profile></Profile>
-      <Timeline
-        nodes={nodes}
-        component={NodeComponent}
-        timestampKey={"timestamp"}
-        uniqueKey={"id"}
-        onClick={onClick}
-      ></Timeline>
-      { currentId && <Picture onClose={onClose} src={nodes.find(x => x.id === currentId)?.src}>{currentId}</Picture>}
-
+    <div className="Gallery" onScroll={onScroll} ref={refGallery}>
+      <div className="container">
+        <Profile ref={refProfile}></Profile>
+        <Timeline
+          ref={refTimeline}
+          nodes={nodes}
+          component={NodeComponent}
+          timestampKey={"timestamp"}
+          uniqueKey={"id"}
+          onClick={onClick}
+          centerIndex={centerIndex}
+        ></Timeline>
+      </div>
+      {currentId && (
+        <Picture
+          onClose={onClose}
+          src={nodes.find((x) => x.id === currentId)?.src}
+        >
+          {currentId}
+        </Picture>
+      )}
     </div>
   );
 };

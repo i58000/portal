@@ -1,3 +1,5 @@
+import "../styles/layout.scss";
+
 const Layout: React.FC = ({ children }) => {
   return (
     <div className="layout">

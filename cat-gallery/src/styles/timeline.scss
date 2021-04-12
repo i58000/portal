@@ -4,10 +4,10 @@
   $circle-size: 18px;
   $line-width: 2px;
   $circle-color: #905a3d;
-  $line-color:#ccc;
+  $line-color: #ccc;
   $circle-border-color: #5f3c23;
   $circle-border-width: 4px;
-  .node {
+  .Node {
     display: flex;
     .left {
       flex-shrink: 0;
@@ -48,12 +48,34 @@
         height: 100%;
         width: $line-width;
         position: absolute;
-        right: $gap-right + $circle-border-width + $circle-size/2 - $line-width/2;
+        right: $gap-right + $circle-border-width + $circle-size/2 -
+          $line-width/2;
         top: 0;
       }
     }
     .right {
+      cursor: pointer;
       width: 100%;
+    }
+  }
+  .node {
+    &.center {
+      .right {
+        transition: all 0.3s;
+        transform: scale(1);
+      }
+    }
+    // &.prev,
+    // &.next {
+    //   .right {
+    //     transition: all 0.3s;
+    //     transform: scale(0.8);
+    //   }
+    // }
+
+    .right {
+      transition: all 0.3s;
+      transform: scale(0.9);
     }
 
     &:first-child {
